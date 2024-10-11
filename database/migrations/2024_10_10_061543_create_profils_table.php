@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->string('thumbnail')->nullable();
             $table->longText('body');
             $table->foreignId('author_id')->constrained('users')->onDelete('cascade'); // Relasi ke tabel users
             $table->boolean('status')->default(true);

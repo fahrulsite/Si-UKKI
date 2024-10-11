@@ -16,7 +16,6 @@ class Profil extends Model
     protected $fillable = [
         'title',
         'slug',
-        'thumbnail',
         'body',
         'author_id',
         'status',

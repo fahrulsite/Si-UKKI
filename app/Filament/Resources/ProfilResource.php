@@ -25,12 +25,7 @@ class ProfilResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                FileUpload::make('thumbnail')
-                    ->image()
-                    ->columnSpanFull()
-                    ->directory('thumbnail-post'),
-                    
+            ->schema([                    
                 Forms\Components\TextInput::make('title')
                     ->unique(ignoreRecord:true)
                     ->columnSpanFull()
@@ -52,13 +47,10 @@ class ProfilResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
+                Tables\Columns\ImageColumn::make('thumbnail')
+                    ->size(100)
                     ->searchable(),
-                Tables\Columns\TextColumn::make('thumbnail')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('author_id')
-                    ->numeric()
-                    ->sortable(),
+                
                 Tables\Columns\IconColumn::make('status')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')

@@ -12,6 +12,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Infolists\Components;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -26,7 +27,7 @@ class EventResource extends Resource
     {
         return $form
             ->schema([
-                FileUpload::make('thumbnail')
+                FileUpload::make('image')
                     ->image()
                     ->columnSpanFull()
                     ->directory('event-image'),
@@ -116,4 +117,6 @@ class EventResource extends Resource
             WidgetsCalendarWidget::class,
         ];
     }
+
+    
 }
