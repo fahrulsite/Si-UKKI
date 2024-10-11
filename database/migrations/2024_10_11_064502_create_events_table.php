@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->longText('body');
-            $table->dateTime('dateTime');
+            $table->dateTime('starts_at');
+            $table->dateTime('ends_at');
             $table->foreignId('organized_id')->constrained('users')->onDelete('cascade'); // Relasi ke tabel users
             $table->foreignId('event_category_id')->constrained('event_categories')->onDelete('cascade'); // Relasi ke tabel event categories
             $table->string('url');

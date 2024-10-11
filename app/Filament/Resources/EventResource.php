@@ -3,7 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\EventResource\Pages;
-use App\Filament\Resources\EventResource\RelationManagers;
+use App\Filament\Resources\EventResource\Widgets\CalendarWidget as WidgetsCalendarWidget;
 use App\Models\Event;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
@@ -19,8 +19,8 @@ class EventResource extends Resource
 {
     protected static ?string $model = Event::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Jadwal Kegiatan';
+    protected static ?string $navigationIcon = 'heroicon-c-list-bullet';
+    protected static ?string $navigationGroup = 'Agenda';
 
     public static function form(Form $form): Form
     {
@@ -39,7 +39,9 @@ class EventResource extends Resource
                 RichEditor::make('body')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\DateTimePicker::make('dateTime')
+                Forms\Components\DateTimePicker::make('starts_at')
+                    ->required(),
+                Forms\Components\DateTimePicker::make('ends_at')
                     ->required(),
                 
                 Forms\Components\Select::make('event_category_id')
@@ -59,7 +61,10 @@ class EventResource extends Resource
                 Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('dateTime')
+                Tables\Columns\TextColumn::make('starts_at')
+                    ->dateTime()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('ends_at')
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('organized_id')
@@ -101,6 +106,14 @@ class EventResource extends Resource
             'index' => Pages\ListEvents::route('/'),
             'create' => Pages\CreateEvent::route('/create'),
             'edit' => Pages\EditEvent::route('/{record}/edit'),
+            'view' => Pages\ViewEvent::route('/{record}')
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            WidgetsCalendarWidget::class,
         ];
     }
 }
