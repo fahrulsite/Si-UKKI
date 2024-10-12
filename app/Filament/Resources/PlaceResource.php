@@ -2,62 +2,66 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProfilResource\Pages;
-use App\Filament\Resources\ProfilResource\RelationManagers;
-use App\Models\Profil;
+use App\Filament\Resources\PlaceResource\Pages;
+use App\Filament\Resources\PlaceResource\RelationManagers;
+use App\Models\Place;
 use Filament\Forms;
-use Filament\Forms\Components\Card;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-
-class ProfilResource extends Resource
+class PlaceResource extends Resource
 {
-    protected static ?string $model = Profil::class;
+    protected static ?string $model = Place::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-information-circle';
-    
+    protected static ?string $navigationIcon = 'heroicon-o-map-pin';
+    protected static ?string $navigationGroup = 'Peta Jaringan';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Section::make()
-                -> schema([
-                    Forms\Components\TextInput::make('title')
-                    ->unique(ignoreRecord:true)
-                    ->columnSpanFull()
+                ->schema([
+                    Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                
-                RichEditor::make('body')
+                    
+                    RichEditor::make('body')
                     ->required()
                     ->columnSpanFull(),
+                ])->columnSpan(2),
 
-                Forms\Components\Toggle::make('status')
-                    ->required(),
-                ]),
+                Section::make()
+                ->schema([
+                    Forms\Components\TextInput::make('maps_url')
+                    ->required()
+                    ->maxLength(255),
+
+                Forms\Components\TextInput::make('contact')
+                    ->required()
+                    ->maxLength(255),
+                ])->columnSpan(1)
                 
-            ]);
+                
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('thumbnail')
-                    ->size(100)
+                Tables\Columns\TextColumn::make('maps_url')
                     ->searchable(),
-                
-                Tables\Columns\IconColumn::make('status')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('contact')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -90,9 +94,9 @@ class ProfilResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProfils::route('/'),
-            'create' => Pages\CreateProfil::route('/create'),
-            'edit' => Pages\EditProfil::route('/{record}/edit'),
+            'index' => Pages\ListPlaces::route('/'),
+            'create' => Pages\CreatePlace::route('/create'),
+            'edit' => Pages\EditPlace::route('/{record}/edit'),
         ];
     }
 }

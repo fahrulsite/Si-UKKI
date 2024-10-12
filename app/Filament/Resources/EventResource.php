@@ -8,6 +8,8 @@ use App\Models\Event;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -27,32 +29,39 @@ class EventResource extends Resource
     {
         return $form
             ->schema([
-                FileUpload::make('image')
-                    ->image()
-                    ->columnSpanFull()
-                    ->directory('event-image'),
-                Forms\Components\TextInput::make('title')
+                Section::make()
+                ->schema([
+                    TextInput::make('title')
                     ->unique(ignoreRecord:true)
                     ->columnSpanFull()
                     ->required()
                     ->maxLength(255),
                 
-                RichEditor::make('body')
+                    RichEditor::make('body')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\DateTimePicker::make('starts_at')
+                ])->columnSpan(2),
+
+                Section::make([
+                    FileUpload::make('image')
+                    ->image()
+                    ->directory('event-image'),
+
+                    Forms\Components\DateTimePicker::make('starts_at')
                     ->required(),
-                Forms\Components\DateTimePicker::make('ends_at')
+                    
+                    Forms\Components\DateTimePicker::make('ends_at')
                     ->required(),
-                
-                Forms\Components\Select::make('event_category_id')
+
+                    Forms\Components\Select::make('event_category_id')
                     ->relationship('eventCategory', 'name')
                     ->required(),
                     
                 Forms\Components\TextInput::make('url')
                     ->required()
                     ->maxLength(255),
-            ]);
+                ])->columnSpan(1),
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table

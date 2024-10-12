@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
             Filament::registerNavigationGroups([
                 'Berita Kabar UKKI',
                 'Agenda',
+                'Kepanitiaan',
+                'Peta Jaringan',
                 'Setting'
 
             ]);

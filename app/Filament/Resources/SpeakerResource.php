@@ -2,62 +2,64 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProfilResource\Pages;
-use App\Filament\Resources\ProfilResource\RelationManagers;
-use App\Models\Profil;
+use App\Filament\Resources\SpeakerResource\Pages;
+use App\Filament\Resources\SpeakerResource\RelationManagers;
+use App\Models\Speaker;
 use Filament\Forms;
-use Filament\Forms\Components\Card;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-
-class ProfilResource extends Resource
+class SpeakerResource extends Resource
 {
-    protected static ?string $model = Profil::class;
+    protected static ?string $model = Speaker::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-information-circle';
-    
+    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationGroup = 'Peta Jaringan';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Section::make()
-                -> schema([
-                    Forms\Components\TextInput::make('title')
-                    ->unique(ignoreRecord:true)
-                    ->columnSpanFull()
+                ->schema([
+                    Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                
-                RichEditor::make('body')
+                RichEditor::make('bio')
                     ->required()
                     ->columnSpanFull(),
+                ])->columnSpan(2),
 
-                Forms\Components\Toggle::make('status')
+                Section::make()
+                ->schema([
+                    Forms\Components\FileUpload::make('image')
+                    ->image()
                     ->required(),
-                ]),
-                
-            ]);
+                TagsInput::make('tag')
+                    ->required(),
+                Forms\Components\TextInput::make('contact')
+                    ->required()
+                    ->maxLength(255),
+                ])->columnSpan(1), 
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('thumbnail')
-                    ->size(100)
+                Tables\Columns\TextColumn::make('contact')
                     ->searchable(),
-                
-                Tables\Columns\IconColumn::make('status')
-                    ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -90,9 +92,9 @@ class ProfilResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProfils::route('/'),
-            'create' => Pages\CreateProfil::route('/create'),
-            'edit' => Pages\EditProfil::route('/{record}/edit'),
+            'index' => Pages\ListSpeakers::route('/'),
+            'create' => Pages\CreateSpeaker::route('/create'),
+            'edit' => Pages\EditSpeaker::route('/{record}/edit'),
         ];
     }
 }
