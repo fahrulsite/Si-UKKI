@@ -1,0 +1,55 @@
+/*===== Event =====*/
+.remove-ext3 .event-bx {margin-bottom: 20px;}
+.event-bx {
+  float: left;
+  position: relative;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 70px rgba(0,0,0,.05);
+  -ms-box-shadow: 0 0 70px rgba(0,0,0,.05);
+  -o-box-shadow: 0 0 70px rgba(0,0,0,.05);
+  box-shadow: 0 0 70px rgba(0,0,0,.05);
+  padding: 24px 25px 24px 100px;
+}
+.event-bx:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: -1;
+  -webkit-border-radius: inherit;
+  border-radius: inherit;
+}
+.event-bx > span {
+  position: absolute;
+  left: 25px;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: initial;
+  text-align: center;
+}
+.event-bx > span i {
+  font-family: Merriweather;
+  font-style: normal;
+  font-size: 18px;
+  display: block;
+}
+.event-bx > h5 {
+  font-size: 18px;
+  margin-bottom: 0;
+}
+.event-bx > a {
+  display: inline-block;
+  font-family: roboto slab;
+  font-size: 14px;
+}
+.event-bx:hover > h5 {color: #fff;}
+.event-bx:hover .pst-mta > li {color: #f1f1f1;}
+.event-bx:hover > a {color: #fff;}
+.event-bx:hover:before {background-color: rgba(0,0,0,.5);}

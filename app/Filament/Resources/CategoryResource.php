@@ -30,6 +30,7 @@ class CategoryResource extends Resource
                 Card::make()
                 ->schema([
                     TextInput::make('name')
+                    ->label('Nama Kategori')
                     ->unique(ignoreRecord: true)
                     ->required()
                     ->maxLength(255),

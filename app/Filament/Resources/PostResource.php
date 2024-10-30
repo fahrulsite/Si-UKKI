@@ -14,6 +14,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TagsColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -32,12 +33,14 @@ class PostResource extends Resource
                 Section::make()
                 ->schema([
                     Forms\Components\TextInput::make('title')
+                        ->label('Judul')    
                         ->unique(ignoreRecord:true)
                         ->columnSpanFull()
                         ->required()
                         ->maxLength(255),
                 
                     RichEditor::make('body')
+                        ->label('isi')
                         ->required()
                         ->columnSpanFull(),
                 ])->columnSpan(2),
@@ -46,13 +49,23 @@ class PostResource extends Resource
                 Section::make()
                 ->schema([
                     FileUpload::make('thumbnail')
+                    ->label('Sampul')
                     ->image()
                     ->columnSpanFull()
                     ->directory('thumbnail-post'),
         
+                
                 Forms\Components\Select::make('category_id')
+                    ->label('Kategori')
                     ->relationship('category', 'name')
-                    ->required(),
+                    // ->multiple()
+                    ->preload()
+                    ->searchable(),
+
+                // TagsColumn::make('categories.name')
+                //     ->label('Kategori')
+                //     ->sortable(),
+
                 Forms\Components\Toggle::make('status')
                     ->required(),
                 ])->columnSpan(1)

@@ -30,12 +30,14 @@ class ProfilResource extends Resource
                 Section::make()
                 -> schema([
                     Forms\Components\TextInput::make('title')
+                    ->label('Judul Halaman')
                     ->unique(ignoreRecord:true)
                     ->columnSpanFull()
                     ->required()
                     ->maxLength(255),
                 
                 RichEditor::make('body')
+                    ->label('Isi')
                     ->required()
                     ->columnSpanFull(),
 

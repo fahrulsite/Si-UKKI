@@ -24,6 +24,11 @@ class Event extends Model
         'url',
     ];
 
+    protected $casts = [
+        'starts_at' => 'datetime',
+        'ends_at' => 'datetime',
+    ];
+
     protected static function boot(){
         parent::boot();
 
@@ -42,6 +47,6 @@ class Event extends Model
         return $this->belongsTo(EventCategory::class);
     }
     public function user(): BelongsTo{
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'organized_id');
     }    
 }

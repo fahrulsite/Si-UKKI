@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/blog/category/{category}', [BlogController::class, 'category'])->name('blog.category');
+
+Route::get('/event', [EventController::class, 'index'])->name('event.index');
+Route::get('/event/{slug}', [EventController::class, 'show'])->name('event.show');
+Route::get('/event/category/{category}', [EventController::class, 'category'])->name('event.category');
+
