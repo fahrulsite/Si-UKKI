@@ -45,8 +45,9 @@
                 <div class="section-title mb-0 text-center">
                     <h2 class="page-title">Kabar UKKI</h2>
                     <ul class="page-list">
-                        <!-- <li><a href="index.html">Home</a></li>
-                        <li>Blog</li> -->
+                        @if(isset($categoryModel))
+                        <li><a class="active">Category :{{ ucfirst($categoryModel->name) }}</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -55,10 +56,13 @@
     <!-- breadcrumb end -->
 
     <!-- blog area start -->
-    <div class="blog-area pd-top-120 pd-bottom-120">
+    <div class="blog-area pd-top-80 pd-bottom-120">
         <div class="container">
+            
             <div class="row">
             @foreach($posts as $post)
+            
+
                 @if($posts->isEmpty())
                     <p>No posts available in this category.</p>
                 @else
@@ -79,7 +83,7 @@
                             
                             <h5 class="title"><a href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a></h5>
                             <p>{{ Str::limit(strip_tags($post->body), 100) }}</p>
-                            <a class="read-more-text">READ MORE <i class="fa fa-angle-right"></i></a>
+                            <a href="{{ route('blog.show', $post->slug) }} class="read-more-text">READ MORE <i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>
                 </div>

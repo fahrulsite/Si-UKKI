@@ -26,18 +26,16 @@ class EventController extends Controller
     public function category($category)
     {
         // Fetch posts that belong to the selected category
-        $events   = Event::whereHas('eventCategory', function ($query) use ($category) {
-        $query->where('slug', $category);
-        })->orderBy('created_at', 'desc')->paginate(6);
+        $categoryModel = EventCategory::where('slug', $category)->firstOrFail();
 
-
-        $categories = EventCategory::all();
+        $events = Event::where('event_category_id', 'LIKE', '%' . $categoryModel->id . '%')
+        ->orderBy('created_at', 'desc')
+        ->paginate(6);
 
         // Also fetch recent posts if you want to show them on the sidebar
         $recentEvents = Event::orderBy('created_at', 'desc')->take(3)->get();
         $categories = EventCategory::all();
-        $currentCategorySlug = $category;
         // Pass data to the blog view
-        return view('event', compact('events', 'recentEvents', 'category', 'categories', 'currentCategorySlug'));
+        return view('event', compact('events', 'recentEvents', 'category', 'categoryModel', 'categories'));
     }
 }

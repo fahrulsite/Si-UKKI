@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Event - SKI UKKI UNY</title>
+    <title>Kepanitiaan - SKI UKKI UNY</title>
     <link rel=icon href="assets/img/favicon.png" sizes="20x20" type="image/png">
 
     <!-- Stylesheet -->
@@ -45,13 +45,13 @@
         <div class="container">
             <div class="breadcrumb-inner">
                 <div class="section-title mb-0 text-center">
-                    <h2 class="page-title"> Kategori Event</h2>
+                    <h2 class="page-title"> Kategori Kepanitiaan </h2>
                     <div class="page-list  mb-0 text-center">
                             <div class="widget widget_tags mb-10">
                                 <div class="tagcloud">
                                         @foreach($categories as $category)
                                             <!-- <a href="{{ route('event.category', $category->slug) }}">{{ $category->name }}</a> -->
-                                            <a href="{{ route('event.category', $category->slug) }}" class="{{ isset($currentCategorySlug) && $currentCategorySlug == $category->slug ? '' : 'not_active' }}">
+                                            <a href="{{ route('volunteer.category', $category->slug) }}" class="{{ isset($currentCategorySlug) && $currentCategorySlug == $category->slug ? '' : 'not_active' }}">
                                                 {{ $category->name }}
                                                 </a>
                                         @endforeach
@@ -72,22 +72,22 @@
             
             <div class="row">
             
-                @if($events->isEmpty())
-                    <p>Mohon Maaf tidak ada event di dalam kategory</p>
+                @if($volunteers->isEmpty())
+                    <p>Mohon Maaf tidak ada kepanitaan di dalam kategory</p>
                 @else
-                    @foreach($events as $event)
+                    @foreach($volunteers as $volunteer)
                     <div class="col-lg-4 col-md-6">
                         <div class="single-blog-inner style-border">
                             <div class="thumb">
-                                <img src="{{asset('storage/' . $event->image) }}" alt="img">
+                                <img src="{{asset('storage/' . $volunteer->image) }}" alt="img">
                             </div>
                             <div class="details">
                                 <ul class="blog-meta">
-                                <li><i class="fa fa-user"></i>{{ $event->user->name }}</li>
-                                    <li><i class="fa fa-calendar-check-o"></i>{{ $event->created_at->format('M d, Y') }}</li>
+                                <li><i class="fa fa-user"></i>{{ $volunteer->user->name}}</li>
+                                    <li><i class="fa fa-calendar-check-o"></i>{{ $volunteer->created_at->format('M d, Y') }}</li>
                                 </ul>
-                                <h5 class="title"><a href="{{ route('event.show', $event->slug) }}">{{ $event->title }}</a></h5>
-                                <p>{{ Str::limit(strip_tags($event->body), 100) }}</p>
+                                <h5 class="title"><a href="{{ route('volunteer.show', $volunteer->slug) }}">{{ $volunteer->title }}</a></h5>
+                                <p>{{ Str::limit(strip_tags($volunteer->body), 100) }}</p>
                                 <a class="read-more-text">READ MORE <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                 
                 <div class="col-12 text-center">
                 <nav class="td-page-navigation">
-                    {{ $events->links('vendor.pagination.custom') }}    
+                    {{ $volunteers->links('vendor.pagination.custom') }}    
                 </nav>
             </div>
             </div>

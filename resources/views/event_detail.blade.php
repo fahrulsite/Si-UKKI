@@ -71,7 +71,6 @@
                         <div class="widget widget_event">
                             <h4 class="widget-title text-white">Event Info :</h4>
                             <ul>
-                                <li><i class="fa fa-calendar"></i>Category: {{ $event->eventCategory->name}}</li>
                                 <li><i class="fa fa-calendar"></i>Start Date: {{ $event->starts_at->format('M d, Y') }}</li>
                                 <li><i class="fa fa-clock-o"></i>Start Time: {{ $event->starts_at->format('H:i') }} WIB</li>
                                 <li><i class="fa fa-calendar"></i>End Date: {{ $event->ends_at->format('M d, Y') }}</li>

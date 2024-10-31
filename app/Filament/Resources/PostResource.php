@@ -58,7 +58,7 @@ class PostResource extends Resource
                 Forms\Components\Select::make('category_id')
                     ->label('Kategori')
                     ->relationship('category', 'name')
-                    // ->multiple()
+                    ->multiple()
                     ->preload()
                     ->searchable(),
 
@@ -83,9 +83,9 @@ class PostResource extends Resource
                 
                 ImageColumn::make('thumbnail'),
                 
-                Tables\Columns\TextColumn::make('category.name')
-                    ->numeric()
-                    ->sortable(),
+                // Tables\Columns\TextColumn::make('category.name')
+                //     ->numeric()
+                //     ->sortable(),
                 Tables\Columns\IconColumn::make('status')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')

@@ -29,10 +29,12 @@ class VolunteerResource extends Resource
                 Section::make()
                 ->schema([
                     Forms\Components\TextInput::make('title')
+                    ->label('Judul')    
                     ->unique(ignoreRecord:true)
                     ->required()
                     ->maxLength(255),
                 RichEditor::make('body')
+                    ->label('isi')
                     ->required()
                     ->columnSpanFull(),
                 ])->columnSpan(2),
@@ -40,11 +42,19 @@ class VolunteerResource extends Resource
                 Section::make()
                 ->schema([
                     Forms\Components\FileUpload::make('image')
+                    ->label('Sampul')
                     ->image()
                     ->directory('volunteering-image'),
 
                     Forms\Components\DateTimePicker::make('closed_at')
                     ->required(),
+
+                    Forms\Components\Select::make('volunteer_category_id')
+                    ->label('Kategori')
+                    ->relationship('volunteerCategory', 'name')
+                    ->multiple()
+                    ->preload()
+                    ->searchable(),
 
                     Forms\Components\TextInput::make('url')
                     ->required()

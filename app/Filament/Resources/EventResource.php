@@ -55,6 +55,8 @@ class EventResource extends Resource
 
                     Forms\Components\Select::make('event_category_id')
                     ->relationship('eventCategory', 'name')
+                    ->multiple()
+                    ->preload()
                     ->required(),
                     
                 Forms\Components\TextInput::make('url')

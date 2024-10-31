@@ -18,9 +18,13 @@ class Volunteer extends Model
         'body',
         'closed_at',
         'organized_id',
+        'volunteer_category_id',
         'url',
     ];
 
+    protected $casts = [
+        'volunteer_category_id' => 'array',
+    ];
     protected static function boot(){
         parent::boot();
 
@@ -35,7 +39,10 @@ class Volunteer extends Model
         });
     }
 
+    public function volunteerCategory():BelongsTo{
+        return $this->belongsTo(VolunteerCategory::class);
+    }
     public function user(): BelongsTo{
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'organized_id');
     }    
 }

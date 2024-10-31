@@ -27,6 +27,7 @@ class Event extends Model
     protected $casts = [
         'starts_at' => 'datetime',
         'ends_at' => 'datetime',
+        'event_category_id' => 'array',
     ];
 
     protected static function boot(){

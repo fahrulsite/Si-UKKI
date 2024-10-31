@@ -29,6 +29,7 @@ class Post extends Model implements HasMedia
 
     protected $casts = [
         'status' => 'boolean',
+        'category_id' => 'array',
     ];
 
     protected static function boot(){

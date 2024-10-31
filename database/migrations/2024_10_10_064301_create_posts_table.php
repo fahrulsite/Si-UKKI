@@ -18,7 +18,7 @@ return new class extends Migration
             $table->longText('body');
             $table->string('thumbnail')->nullable();
             $table->foreignId('author_id')->constrained('users')->onDelete('cascade'); // Relasi ke tabel users
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade'); // Relasi ke tabel categories
+            $table->json('category_id')->constrained('categories')->onDelete('cascade')->nullable(); // Relasi ke tabel categories
             $table->boolean('status')->default(true);
             $table->timestamps();
             

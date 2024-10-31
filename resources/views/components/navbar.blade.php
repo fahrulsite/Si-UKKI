@@ -9,7 +9,7 @@
                         <span class="icon-right"></span>
                     </button>
                 </div>
-                <div class="logo">  
+                <div class="logo">
                     <a href="index.html"><img src="/assets/img/logo.png" alt="img"></a>
                 </div>
                 <div class="nav-right-part nav-right-part-mobile">
@@ -34,21 +34,9 @@
                             <a href="/event">Event</a>
                         </li>
                         <li>
-                            <a href="/volunteering">Info Kepanitiaan</a>
+                            <a href="/volunteer">Info Kepanitiaan</a>
                         </li>
                         <li><a href="contact.html">Kontak</a></li>
-                        <li class="menu-item-has-children">
-                            <a href="#">Pages</a>
-                            <ul class="sub-menu">
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="event.html">Event</a></li>
-                                <li><a href="event-details.html">Event Details</a></li>
-                                <li><a href="team.html">Instructor</a></li>
-                                <li><a href="team-details.html">Instructor Details</a></li>
-                                <li><a href="pricing.html">Pricing</a></li>
-                                <li><a href="gallery.html">Gallery</a></li>
-                            </ul>
-                        </li>
                         
                         
                     </ul>

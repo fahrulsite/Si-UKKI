@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\VolunteerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +30,6 @@ Route::get('/event', [EventController::class, 'index'])->name('event.index');
 Route::get('/event/{slug}', [EventController::class, 'show'])->name('event.show');
 Route::get('/event/category/{category}', [EventController::class, 'category'])->name('event.category');
 
+Route::get('/volunteer', [VolunteerController::class, 'index'])->name('volunteer.index');
+Route::get('/volunteer/{slug}', [VolunteerController::class, 'show'])->name('volunteer.show');
+Route::get('/volunteer/category/{category}', [VolunteerController::class, 'category'])->name('volunteer.category');

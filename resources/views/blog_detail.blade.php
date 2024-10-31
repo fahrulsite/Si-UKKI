@@ -52,15 +52,23 @@
                             </div>
                         </div>
                         <div class="tag-and-share">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h6>Category</h6>
-                                    <div class="tags">
-                                    {{ ucfirst($post->category->name) }}
-                                    </div>
+                        <div class="row">
+                            <div class="widget widget_tags mb-0">
+                                <h6>Categories</h6>
+                                <div class="tags, tagcloud">
+                                    @foreach($post->category_id as $categoryId)
+                                        @php
+                                            $category = $categories->firstWhere('id', $categoryId);
+                                        @endphp
+                                        @if($category)
+                                            <a class="active">{{ ucfirst($category->name) }}</a>
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
+                     </div>
+
                         
                     </div>
                 </div>
