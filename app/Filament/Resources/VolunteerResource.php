@@ -42,11 +42,12 @@ class VolunteerResource extends Resource
                 Section::make()
                 ->schema([
                     Forms\Components\FileUpload::make('image')
-                    ->label('Sampul')
+                    ->label('Pamflet')
                     ->image()
                     ->directory('volunteering-image'),
 
                     Forms\Components\DateTimePicker::make('closed_at')
+                    ->label('Ditutup tanggal')   
                     ->required(),
 
                     Forms\Components\Select::make('volunteer_category_id')
@@ -57,6 +58,7 @@ class VolunteerResource extends Resource
                     ->searchable(),
 
                     Forms\Components\TextInput::make('url')
+                    ->label('Link Pendaftaran')   
                     ->required()
                     ->maxLength(255),                    
                 ])->columnSpan(1),                

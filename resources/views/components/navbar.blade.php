@@ -10,11 +10,9 @@
                     </button>
                 </div>
                 <div class="logo">
-                    <a href="index.html"><img src="/assets/img/logo.png" alt="img"></a>
+                    <a href="/"><img src="/assets/img/logo.png" alt="img"></a>
                 </div>
-                <div class="nav-right-part nav-right-part-mobile">
-                    <a class="search-bar" href="#"><i class="fa fa-search"></i></a>
-                </div>
+                
                 <div class="collapse navbar-collapse" id="edumint_main_menu">
                     <ul class="navbar-nav menu-open">
                         <li>
@@ -36,15 +34,12 @@
                         <li>
                             <a href="/volunteer">Info Kepanitiaan</a>
                         </li>
-                        <li><a href="contact.html">Kontak</a></li>
+                        <li><a href="/contact">Kontak</a></li>
                         
                         
                     </ul>
                 </div>
-                <div class="nav-right-part nav-right-part-desktop">
-                    
-                    <a class="search-bar" href="#"><i class="fa fa-search"></i></a>
-                </div>
+                
             </div>
         </nav>
     </div>

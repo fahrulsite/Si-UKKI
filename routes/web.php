@@ -33,3 +33,7 @@ Route::get('/event/category/{category}', [EventController::class, 'category'])->
 Route::get('/volunteer', [VolunteerController::class, 'index'])->name('volunteer.index');
 Route::get('/volunteer/{slug}', [VolunteerController::class, 'show'])->name('volunteer.show');
 Route::get('/volunteer/category/{category}', [VolunteerController::class, 'category'])->name('volunteer.category');
+
+Route::get('/contact', function () {
+    return view('contact');
+});

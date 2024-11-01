@@ -47,8 +47,7 @@
                     </div>
                     <div class="col-lg-4  col-md-6 order-lg-12 text-md-right align-self-center">
                         <ul class="social-media mt-md-0 mt-3">
-                            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a class="twitter" href="https://www.tiktok.com/@ukkimujahidin_uny"><i class="fa-brands fa-tiktok"></i></a></li>
+                            
                             <li><a class="instagram" href="https://www.instagram.com/ukkimujahidin_uny/"><i class="fa fa-instagram"></i></a></li>
                             <li><a class="youtube" href="https://www.youtube.com/@ukkijamuny7209"><i class="fa fa-youtube"></i></a></li>
                             

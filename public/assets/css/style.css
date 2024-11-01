@@ -1381,15 +1381,10 @@ ul {
 }
 
 .widget-recent-post ul li .media .media-left {
-  width: 75px;
-  width: 70px;
   margin-right: 15px;
 }
 
 .widget-recent-post ul li .media .media-left img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   border-radius: 5px;
 }
 
@@ -1522,8 +1517,6 @@ ul {
   color: #ffffff;
   border-color: var(--main-color);
 }
-
-
 
 /*********** widget_checkbox_list ************/
 .widget_checkbox_list .single-checkbox:last-child {
@@ -2867,7 +2860,7 @@ ul {
   top: 0;
   height: 100%;
   width: 100%;
-  background: rgba(0, 33, 71, 0.9);
+  background: rgba(17, 108, 84, 0.84)
 }
 
 .banner-area-3 {
@@ -2921,7 +2914,6 @@ ul {
 
 .single-intro-inner .thumb img {
   width: auto !important;
-  height: 300;
   display: inline-block;
 }
 
@@ -3732,8 +3724,6 @@ ul {
   margin-left: -100px;
 }
 
-
-
 /**************** single-progress-inner *************/
 .single-progress-inner {
   margin: 0;
@@ -3927,7 +3917,6 @@ ul {
 
 .event-detaila-inner .thumb img {
   border-radius: 6px;
-  max-height: 500px;
 }
 
 .event-detaila-inner .event-meta {
@@ -4308,6 +4297,7 @@ ul {
 .course-details-nav-tab ul li:last-child a {
   border-right: 0 !important;
 }
+
 /*------------------------------------------------
     blog style
 ------------------------------------------------*/
@@ -4322,7 +4312,6 @@ ul {
 .single-blog-inner .thumb {
   height: 200px; /* Set the height to 300px */
   position: relative;
-  overflow: hidden; /* Ensure the image fits within the container */
 }
 
 .single-blog-inner .thumb img {

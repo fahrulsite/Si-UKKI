@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/assets/css/vendor.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link rel="stylesheet" href="/assets/css/color.css">
     <style>
         .thumbnail {
             width: 770px;
@@ -27,16 +28,7 @@
 
     
 
-    <!-- search popup start-->
-    <div class="td-search-popup" id="td-search-popup">
-        <form action="index.html" class="search-form">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search.....">
-            </div>
-            <button type="submit" class="submit-btn"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
-    <!-- search popup end-->
+
     <div class="body-overlay" id="body-overlay"></div>
 
    <x-navbar></x-navbar>
@@ -51,7 +43,7 @@
                                 <div class="tagcloud">
                                         @foreach($categories as $category)
                                             <!-- <a href="{{ route('event.category', $category->slug) }}">{{ $category->name }}</a> -->
-                                            <a href="{{ route('event.category', $category->slug) }}" class="{{ isset($currentCategorySlug) && $currentCategorySlug == $category->slug ? '' : 'not_active' }}">
+                                            <a href="{{ route('event.category', $category->slug) }}" class="{{ isset($currentCategorySlug) && $currentCategorySlug == $category->slug ? 'active' : '' }}">
                                                 {{ $category->name }}
                                                 </a>
                                         @endforeach
@@ -65,46 +57,43 @@
     </div>
     <!-- breadcrumb end -->
 
-    <!-- event area start -->
-    <div class="blog-area pd-top-100 pd-bottom-120">
-        
+   <!--blog-area start-->
+   <div class="blog-area pd-top-120 pd-bottom-90">
         <div class="container">
-            
-            <div class="row">
-            
-                @if($events->isEmpty())
-                    <p>Mohon Maaf tidak ada event di dalam kategory</p>
-                @else
+            @if($events->isEmpty())
+                <p>Mohon Maaf tidak ada event di dalam kategory</p>
+            @else
+                
+                <div class="row justify-content-center">
                     @foreach($events as $event)
                     <div class="col-lg-4 col-md-6">
-                        <div class="single-blog-inner style-border">
+                        <div class="single-blog-inner">
                             <div class="thumb">
                                 <img src="{{asset('storage/' . $event->image) }}" alt="img">
+                                <span class="date">{{$event->starts_at->format('M d, Y')}}</span>
                             </div>
                             <div class="details">
                                 <ul class="blog-meta">
-                                <li><i class="fa fa-user"></i>{{ $event->user->name }}</li>
-                                    <li><i class="fa fa-calendar-check-o"></i>{{ $event->created_at->format('M d, Y') }}</li>
+                                    <li><i class="fa fa-user"></i>{{ $event->user->name }}</li>
                                 </ul>
-                                <h5 class="title"><a href="{{ route('event.show', $event->slug) }}">{{ $event->title }}</a></h5>
-                                <p>{{ Str::limit(strip_tags($event->body), 100) }}</p>
-                                <a class="read-more-text">READ MORE <i class="fa fa-angle-right"></i></a>
+                                <h5><a href="{{ route('event.show', $event->slug) }}">{{ $event->title }}</a></h5>
+                                <a class="read-more-text" href="{{ route('event.show', $event->slug) }}">READ MORE <i
+                                        class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
-                    @endforeach
-                @endif
+                    @endforeach    
+                </div>
                 
-                
-                <div class="col-12 text-center">
+            @endif
+            <div class="col-12 text-center">
                 <nav class="td-page-navigation">
                     {{ $events->links('vendor.pagination.custom') }}    
                 </nav>
             </div>
-            </div>
         </div>
     </div>
-    <!-- event area end -->
+    <!--blog-area end-->
 
     <x-footer></x-footer>
 

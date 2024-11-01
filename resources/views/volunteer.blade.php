@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/assets/css/vendor.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link rel="stylesheet" href="/assets/css/color.css">
     <style>
         .thumbnail {
             width: 770px;
@@ -51,7 +52,7 @@
                                 <div class="tagcloud">
                                         @foreach($categories as $category)
                                             <!-- <a href="{{ route('event.category', $category->slug) }}">{{ $category->name }}</a> -->
-                                            <a href="{{ route('volunteer.category', $category->slug) }}" class="{{ isset($currentCategorySlug) && $currentCategorySlug == $category->slug ? '' : 'not_active' }}">
+                                            <a href="{{ route('volunteer.category', $category->slug) }}" class="{{ isset($currentCategorySlug) && $currentCategorySlug == $category->slug ? 'active' : '' }}">
                                                 {{ $category->name }}
                                                 </a>
                                         @endforeach
