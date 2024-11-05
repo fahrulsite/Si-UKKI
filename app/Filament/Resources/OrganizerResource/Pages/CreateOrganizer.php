@@ -9,4 +9,11 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateOrganizer extends CreateRecord
 {
     protected static string $resource = OrganizerResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return static::getResource()::getUrl('index');
+    }    
+
+    
 }

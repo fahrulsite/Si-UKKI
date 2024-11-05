@@ -30,9 +30,11 @@ class SpeakerResource extends Resource
                 Section::make()
                 ->schema([
                     Forms\Components\TextInput::make('name')
+                    ->label("Nama")
                     ->required()
                     ->maxLength(255),
                 RichEditor::make('bio')
+                    ->label("Deskripsi")
                     ->required()
                     ->columnSpanFull(),
                 ])->columnSpan(2),
@@ -40,11 +42,12 @@ class SpeakerResource extends Resource
                 Section::make()
                 ->schema([
                     Forms\Components\FileUpload::make('image')
-                    ->image()
-                    ->required(),
+                    ->label("Foto")
+                    ->image(),
                 TagsInput::make('tag')
+                    ->label("Tag Spesialis/Keahlian")
                     ->required(),
-                Forms\Components\TextInput::make('contact')
+                Forms\Components\TextInput::make('Kontak')
                     ->required()
                     ->maxLength(255),
                 ])->columnSpan(1), 
@@ -55,10 +58,12 @@ class SpeakerResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\ImageColumn::make('image')
+                ->label("Foto"),
                 Tables\Columns\TextColumn::make('name')
+                    ->label("Nama")
                     ->searchable(),
-                Tables\Columns\TextColumn::make('contact')
+                Tables\Columns\TextColumn::make('tag')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

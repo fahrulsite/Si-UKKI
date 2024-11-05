@@ -14,7 +14,13 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
     <link rel="stylesheet" href="/assets/css/color.css">
-
+    <style>
+        .thumbnail {
+            width: 770px;
+            height: 450px;
+            object-fit: cover;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,7 +29,7 @@
     <x-navbar></x-navbar>
 
     <!-- breadcrumb start -->
-    <div class="breadcrumb-area bg-overlay" style="background-image:url('assets/img/bg/3.png')">
+    <div class="breadcrumb-area bg-overlay" style="background-image:url('/assets/img/bg/3.png')">
         <div class="container">
             <div class="breadcrumb-inner">
                 <div class="section-title mb- text-center">
@@ -48,17 +54,17 @@
                 </div>
                 <div class="col-lg-4 order-lg-1">
                     <div class="td-sidebar">
-                    <a href="{$volunteer->url}}">
+                        <a href="http://{{$volunteer->url}} ">
                             <div class="widget widget_url text-center">
                                 <h4 class="widget-title text-white">Link Pendaftaran</h4>
                             </div>
                         </a>
                         
                         <div class="widget widget_event">
-                            <h4 class="widget-title text-white">Info Kepanitiaan:</h4>
+                            <h4 class="widget-title text-blue">Info Kepanitiaan:</h4>
                             <ul>
                                                                 <br>
-                                <h4 class="widget-title text-white">Category :</h4>
+                                <h4 class="widget-title text-blue">Category :</h4>
                                 @foreach($volunteerCategories as $category)
                                     <li><i>-</i> {{ $category->name }}</li>
                                 @endforeach
@@ -67,7 +73,7 @@
                     
                         
                         <div class="widget widget_event text-center">
-                            <h4 class="widget-title text-white">Organized By :</h4>
+                            <h4 class="widget-title text-blue">Organized By :</h4>
                             <ul>
                                 <div class="col-lg-12 order-lg-12">
                                     <div class="event-detaila-inner text-center"> <!-- Added Flexbox classes -->
@@ -79,7 +85,7 @@
                                 
                             </ul>
                             <br>
-                            <h5 class="text-white"><a href="http://instagram.com/{{ $volunteer->user->instagram }}">{{ $volunteer->user->name }}</a></h5>
+                            <h5 class="text-blue"><a href="http://instagram.com/{{ $volunteer->user->instagram }}">{{ $volunteer->user->name }}</a></h5>
                         </div>
 
                         

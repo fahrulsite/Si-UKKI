@@ -51,13 +51,16 @@ class PostResource extends Resource
                     FileUpload::make('thumbnail')
                     ->label('Sampul')
                     ->image()
+                    ->maxSize(2560)
                     ->columnSpanFull()
+                    ->required()
                     ->directory('thumbnail-post'),
         
                 
                 Forms\Components\Select::make('category_id')
                     ->label('Kategori')
                     ->relationship('category', 'name')
+                    ->required()
                     ->multiple()
                     ->preload()
                     ->searchable(),
@@ -78,11 +81,11 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('thumbnail')
+                ->label("Sampul"),
                 Tables\Columns\TextColumn::make('title')
+                    ->label("Judul Berita")
                     ->searchable(),
-                
-                ImageColumn::make('thumbnail'),
-                
                 // Tables\Columns\TextColumn::make('category.name')
                 //     ->numeric()
                 //     ->sortable(),
@@ -101,13 +104,15 @@ class PostResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])->defaultSort('created_at', 'desc');
+
+            
     }
 
     public static function getRelations(): array

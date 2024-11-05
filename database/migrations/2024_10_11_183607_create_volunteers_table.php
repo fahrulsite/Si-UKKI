@@ -17,10 +17,11 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->longText('body');
-            $table->dateTime('closed_at');
+            $table->dateTime('date');
             $table->foreignId('organized_id')->constrained('users')->onDelete('cascade'); // Relasi ke tabel users
             $table->json('volunteer_category_id')->constrained('volunteer_categories')->onDelete('cascade')->nullable(); 
             $table->string('url');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

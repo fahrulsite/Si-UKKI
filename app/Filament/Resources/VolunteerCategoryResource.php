@@ -25,6 +25,7 @@ class VolunteerCategoryResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label("Nama")
                     ->required()
                     ->unique(ignoreRecord:true)
                     ->maxLength(255),
@@ -36,8 +37,7 @@ class VolunteerCategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
+                    ->label("Nama")
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

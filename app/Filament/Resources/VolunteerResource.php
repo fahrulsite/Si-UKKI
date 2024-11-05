@@ -42,12 +42,13 @@ class VolunteerResource extends Resource
                 Section::make()
                 ->schema([
                     Forms\Components\FileUpload::make('image')
+                    ->required()
                     ->label('Pamflet')
                     ->image()
                     ->directory('volunteering-image'),
 
-                    Forms\Components\DateTimePicker::make('closed_at')
-                    ->label('Ditutup tanggal')   
+                    Forms\Components\DateTimePicker::make('date')
+                    ->label('Waktu Pelaksanaan')   
                     ->required(),
 
                     Forms\Components\Select::make('volunteer_category_id')
@@ -55,12 +56,17 @@ class VolunteerResource extends Resource
                     ->relationship('volunteerCategory', 'name')
                     ->multiple()
                     ->preload()
+                    ->required()
                     ->searchable(),
 
                     Forms\Components\TextInput::make('url')
                     ->label('Link Pendaftaran')   
                     ->required()
-                    ->maxLength(255),                    
+                    ->maxLength(255),               
+                    
+                    Forms\Components\Toggle::make('status')
+                    ->label("Dibuka")
+                    ->required(),
                 ])->columnSpan(1),                
             ])->columns(3);
     }
@@ -69,13 +75,16 @@ class VolunteerResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\ImageColumn::make('image')
+                ->label("Sampul"),
                 Tables\Columns\TextColumn::make('title')
+                    ->label("Nama Kegiatan")
                     ->searchable(),
                 Tables\Columns\TextColumn::make('closed_at')
-                    ->dateTime()
+                    ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('organized_id')
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label("Penyelenggara")
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -97,7 +106,7 @@ class VolunteerResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array

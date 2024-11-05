@@ -23,7 +23,7 @@
     <x-navbar></x-navbar>
 
     <!-- breadcrumb start -->
-    <div class="breadcrumb-area bg-overlay" style="background-image:url('assets/img/bg/3.png')">
+    <div class="breadcrumb-area bg-overlay" style="background-image:url('/assets/img/bg/3.png')">
         <div class="container">
             <div class="breadcrumb-inner">
                 <div class="section-title mb- text-center">
@@ -48,18 +48,21 @@
                 </div>
                 <div class="col-lg-4 order-lg-1">
                     <div class="td-sidebar">
-
+                        <a href="http://{{$event->url}} ">
+                            <div class="widget widget_url text-center">
+                                <h4 class="widget-title text-white">Link Pendaftaran</h4>
+                            </div>
+                        </a>
                         
-
                         <div class="widget widget_event">
-                            <h4 class="widget-title text-white">Event Info :</h4>
+                            <h4 class="widget-title text-blue">Event Info :</h4>
                             <ul>
                                 <li><i class="fa fa-calendar"></i>Tanggal Dimulai:  {{ $event->starts_at->format('M d, Y') }}</li>
                                 <li><i class="fa fa-clock-o"></i>Jam Dimulai: {{ $event->starts_at->format('H:i') }} WIB</li>
                                 <li><i class="fa fa-calendar"></i>Tanggal Selesai: {{ $event->ends_at->format('M d, Y') }}</li>
                                 <li><i class="fa fa-clock-o"></i>Jam Selesai: {{ $event->ends_at->format('H:i') }} WIB</li>
                                 <br>
-                                <h4 class="widget-title text-white">Category :</h4>
+                                <h4 class="widget-title text-blue">Category :</h4>
                                 @foreach($eventCategories as $category)
                                     <li><i>-</i> {{ $category->name }}</li>
                                 @endforeach
@@ -67,23 +70,18 @@
                         </div>
 
                         <div class="widget widget_event text-center">
-                            <h4 class="widget-title text-white">Organized By :</h4>
+                            <h4 class="widget-title text-blue">Organized By :</h4>
                             <ul>
                                 <div class="col-lg-12 order-lg-12">
                                     <div class="event-detaila-inner text-center"> <!-- Added Flexbox classes -->
                                         <div class="thumb mb-1 ">
                                             <img src="{{ asset('/storage/' . $event->user->profile_picture) }}" alt="img" class="img-fluid"> <!-- Added img-fluid for responsiveness -->
+                                            <h5 class="text-blue"><a href="http://instagram.com/{{ $event->user->instagram }}">{{ $event->user->name }}</a></h5>
                                         </div>
                                     </div>
                                 </div>
-                                
                             </ul>
-                            <br>
-                            <h5 class="text-white"><a href="http://instagram.com/{{ $event->user->instagram }}">{{ $event->user->name }}</a></h5>
                         </div>
-                        
-                        
-                        
                     </div>
                 </div>
             </div>

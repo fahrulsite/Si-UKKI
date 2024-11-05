@@ -33,33 +33,41 @@ class EventResource extends Resource
                 ->schema([
                     TextInput::make('title')
                     ->unique(ignoreRecord:true)
+                    ->label("Nama Kegiatan")
                     ->columnSpanFull()
                     ->required()
                     ->maxLength(255),
                 
                     RichEditor::make('body')
+                    ->label("Isi")
                     ->required()
                     ->columnSpanFull(),
                 ])->columnSpan(2),
 
                 Section::make([
                     FileUpload::make('image')
+                    ->label("Pamflet")
                     ->image()
+                    ->required()
                     ->directory('event-image'),
 
                     Forms\Components\DateTimePicker::make('starts_at')
+                    ->label("Waktu Mulai")
                     ->required(),
                     
                     Forms\Components\DateTimePicker::make('ends_at')
+                    ->label("Waktu Selesai")
                     ->required(),
 
                     Forms\Components\Select::make('event_category_id')
                     ->relationship('eventCategory', 'name')
+                    ->label("Kategori")
                     ->multiple()
                     ->preload()
                     ->required(),
                     
                 Forms\Components\TextInput::make('url')
+                    ->label("Link Pendaftaran")
                     ->required()
                     ->maxLength(255),
                 ])->columnSpan(1),
@@ -70,16 +78,21 @@ class EventResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\ImageColumn::make('image')
+                ->label("Sampul"),
                 Tables\Columns\TextColumn::make('title')
+                    ->label("Nama Kegiatan")
                     ->searchable(),
                 Tables\Columns\TextColumn::make('starts_at')
+                    ->label("Waktu Mulai")
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('ends_at')
+                    ->label("Waktu Selesai")
                     ->dateTime()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('organized_id')
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label("Penyelenggara")
                     ->numeric()
                     ->sortable(),
                 
@@ -102,7 +115,7 @@ class EventResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ]) ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array

@@ -21,8 +21,11 @@
                         <li class="menu-item-has-children">
                             <a href="#">Profil</a>
                             <ul class="sub-menu">
-                                <li><a href="course.html">Course</a></li>
-                                <li><a href="course-details.html">Course Single</a></li>
+                                @foreach ($profils as $profil)
+                                    <li>
+                                        <a href="{{ route('profil.show', $profil->slug) }}">{{ $profil->title }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </li>
                         <li>

@@ -9,4 +9,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateSpeaker extends CreateRecord
 {
     protected static string $resource = SpeakerResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return static::getResource()::getUrl('index');
+    }    
 }

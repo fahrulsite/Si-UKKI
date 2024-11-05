@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/assets/css/vendor.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
-    <link rel="stylesheet" href="/assets/css/color.css">
+    
     <style>
         .thumbnail {
             width: 770px;
@@ -59,14 +59,12 @@
     <!-- blog area start -->
     <div class="blog-area pd-top-80 pd-bottom-120">
         <div class="container">
-            
+            @if($posts->isEmpty())
+                    <p>Mohon Maaf tidak ada postingan yang sesuai</p>
+                @else
             <div class="row">
             @foreach($posts as $post)
-            
-
-                @if($posts->isEmpty())
-                    <p>No posts available in this category.</p>
-                @else
+                
                 <div class="col-lg-4 col-md-6">
                     <div class="single-blog-inner style-border">
                         <div class="thumb">
@@ -84,11 +82,11 @@
                             
                             <h5 class="title"><a href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a></h5>
                             <p>{{ Str::limit(strip_tags($post->body), 100) }}</p>
-                            <a href="{{ route('blog.show', $post->slug) }} class="read-more-text">READ MORE <i class="fa fa-angle-right"></i></a>
+                            <a  href="{{ route('blog.show', $post->slug) }}" >READ MORE <i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>
                 </div>
-                @endif
+                
                 @endforeach
                 
                 <div class="col-12 text-center">
@@ -96,6 +94,7 @@
                     {{ $posts->links('vendor.pagination.custom') }}    
                 </nav>
             </div>
+            @endif
             </div>
         </div>
     </div>

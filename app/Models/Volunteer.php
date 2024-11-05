@@ -16,14 +16,16 @@ class Volunteer extends Model
         'title',
         'slug',
         'body',
-        'closed_at',
+        'date',
         'organized_id',
         'volunteer_category_id',
         'url',
+        'status'
     ];
 
     protected $casts = [
         'volunteer_category_id' => 'array',
+        'status' => 'boolean',
     ];
     protected static function boot(){
         parent::boot();

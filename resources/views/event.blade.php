@@ -25,15 +25,11 @@
 </head>
 
 <body>
-
-    
-
-
     <div class="body-overlay" id="body-overlay"></div>
 
    <x-navbar></x-navbar>
     <!-- breadcrumb start -->
-    <div class="breadcrumb-area bg-overlay" style="background-image:url('assets/img/bg/3.png')">
+    <div class="breadcrumb-area bg-overlay" style="background-image:url('/assets/img/bg/3.png')">
         <div class="container">
             <div class="breadcrumb-inner">
                 <div class="section-title mb-0 text-center">
@@ -61,7 +57,7 @@
    <div class="blog-area pd-top-120 pd-bottom-90">
         <div class="container">
             @if($events->isEmpty())
-                <p>Mohon Maaf tidak ada event di dalam kategory</p>
+                <p>Mohon maaf tidak ada event yang sesuai</p>
             @else
                 
                 <div class="row justify-content-center">

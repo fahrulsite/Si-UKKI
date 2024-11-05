@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\VolunteerController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,10 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+Route::get('/', [MainController::class, 'index'])->name('welcome');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
@@ -37,3 +36,9 @@ Route::get('/volunteer/category/{category}', [VolunteerController::class, 'categ
 Route::get('/contact', function () {
     return view('contact');
 });
+
+// Route to display all profiles
+Route::get('/p', [ProfilController::class, 'index'])->name('profils.index');
+
+// Route to display individual profile details
+Route::get('/p/{slug}', [ProfilController::class, 'show'])->name('profil.show');

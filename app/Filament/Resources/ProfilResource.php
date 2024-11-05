@@ -52,14 +52,15 @@ class ProfilResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
                 Tables\Columns\ImageColumn::make('thumbnail')
                     ->size(100)
-                    ->searchable(),
-                
+                    ->label("Sampul"),
+                Tables\Columns\TextColumn::make('title')
+                    ->searchable()
+                    ->label("Judul Halaman"),
                 Tables\Columns\IconColumn::make('status')
                     ->boolean(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -73,7 +74,7 @@ class ProfilResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
